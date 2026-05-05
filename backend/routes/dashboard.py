@@ -13,7 +13,7 @@ def get_dashboard(db: Session = Depends(get_db)):
 
     crops_by_type = dict(
         db.query(Crop.type, func.count(Crop.id))
-        .groupe_by(Crop.type).all()
+        .group_by(Crop.type).all()
     )
 
     active_alerts = db.query(Alert).filter(Alert.resolved == False).count()
@@ -24,6 +24,11 @@ def get_dashboard(db: Session = Depends(get_db)):
     )
 
     observation_states = dict(
+        db.query(Observation.state, func.count(Observation.id))
+        .group_by(Observation.state).all()
+    )
+
+    recent_observations = (
         db.query(Observation).order_by(Observation.date.desc()).limit(5).all()
     )
 

@@ -9,7 +9,7 @@ router = APIRouter(prefix="/crops", tags=["Crops"])
 
 @router.get("/", response_model=List[CropRead])
 def get_all(plot_id: Optional[int] = None, db: Session = Depends(get_db)):
-    query = db.quer(Crop)
+    query = db.query(Crop)
     if plot_id:
         query = query.filter(Crop.plot_id == plot_id)
     return query.all()
@@ -23,6 +23,7 @@ def get_one(id: int, db: Session = Depends(get_db)):
 
 @router.post("/", response_model=CropRead, status_code=201)
 def create(data: CropCreate, db: Session = Depends(get_db)):
+    crop = Crop(**data.model_dump())
     db.add(crop)
     db.commit()
     db.refresh(crop)

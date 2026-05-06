@@ -1,2 +1,19 @@
-/__pycache__
+# Fichiers personnels (pas pour le repo)
+*.pdf
+*.zip
+app/
+site/
+site_simple/
+
+# Python
+__pycache__/
 *.pyc
+venv/
+*.db
+*.db-journal
+
+# Système
+.DS_Store
+.env
+.vscode/
+.idea/

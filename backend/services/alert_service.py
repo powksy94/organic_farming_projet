@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 from datetime import date
-from models import Weather, Observation, Alert, Plot
+from model.models import Weather, Observation, Alert, Plot
 
 HUMIDITY_DISEASE_THRESHOLD = 80
 TEMP_DISEASE_THRESHOLD = 20

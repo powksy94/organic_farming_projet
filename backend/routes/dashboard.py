@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from sqlalchemy import func
-from database import get_db
-from models import Plot, Crop, Observation, Alert, Weather
+from data.database import get_db
+from model.models import Plot, Crop, Observation, Alert, Weather
 
 router = APIRouter(prefix="/dashboard", tags=["Dashboard"])
 

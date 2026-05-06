@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from typing import List, Optional
-from database import get_db
-from models import Observation
+from data.database import get_db
+from model.models import Observation
 from schemas import ObservationCreate, ObservationRead
 
 router = APIRouter(prefix="/observations", tags=["Observations"])

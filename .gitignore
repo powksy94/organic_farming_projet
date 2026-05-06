@@ -1,2 +1,23 @@
-/__pycache__
+# Python
+__pycache__/
 *.pyc
+*.pyo
+*.pyd
+.Python
+
+# Environnement virtuel
+organic-farming.venv/
+venv/
+.venv/
+
+# Base de données
+*.db
+*.sqlite3
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

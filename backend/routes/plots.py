@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from typing import List
-from database import get_db
-from models import Plot
+from data.database import get_db
+from model.models import Plot
 from schemas import PlotCreate, PlotRead
 
 router = APIRouter(prefix="/plots", tags=["Plots"])

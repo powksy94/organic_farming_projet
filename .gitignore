@@ -4,16 +4,32 @@
 app/
 site/
 site_simple/
+frontend/
 
 # Python
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
+.Python
 venv/
+.venv/
+organic-farming.venv/
+
+# Base de données
 *.db
 *.db-journal
+*.sqlite3
 
-# Système
-.DS_Store
-.env
+# IDE
 .vscode/
 .idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Backend (fichiers locaux uniquement)
+backend/database.py
+backend/models.py
+backend/services/alert_service.py

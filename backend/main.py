@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from database import init_db
+from data.database import init_db
 from routes import plots, crops, observations, alerts, weather, dashboard
 
 app = FastAPI(title="Agriculture API")

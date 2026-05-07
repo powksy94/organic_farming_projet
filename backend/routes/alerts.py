@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from typing import List, Optional
-from database import get_db
-from models import Alert
+from data.database import get_db
+from model.models import Alert
 from schemas import AlertRead
 from services.alert_service import generate_alerts
 

@@ -1,17 +1,24 @@
+# Fichiers personnels (pas pour le repo)
+*.pdf
+*.zip
+app/
+site/
+site_simple/
+frontend/
+
 # Python
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
 .Python
-
-# Environnement virtuel
-organic-farming.venv/
 venv/
 .venv/
+organic-farming.venv/
 
 # Base de données
 *.db
+*.db-journal
 *.sqlite3
 
 # IDE
@@ -21,3 +28,8 @@ venv/
 # OS
 .DS_Store
 Thumbs.db
+
+# Backend (fichiers locaux uniquement)
+backend/database.py
+backend/models.py
+backend/services/alert_service.py

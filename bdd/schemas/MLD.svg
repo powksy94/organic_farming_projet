@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1300 850" font-family="Arial, sans-serif">
+  <style>
+    .table { fill: #F1F8E9; stroke: #2E7D32; stroke-width: 2; }
+    .table-header { fill: #2E7D32; }
+    .table-title { fill: white; font-weight: bold; font-size: 14px; text-anchor: middle; }
+    .row { font-size: 11.5px; fill: #1B5E20; }
+    .pk { font-weight: bold; }
+    .fk { font-style: italic; fill: #BF360C; }
+    .link { stroke: #424242; stroke-width: 1.5; fill: none; marker-end: url(#arrow); }
+    .title { fill: #1A237E; font-size: 22px; font-weight: bold; text-anchor: middle; }
+    .legend { fill: #FAFAFA; stroke: #9E9E9E; stroke-width: 1; }
+  </style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#424242"/>
+    </marker>
+  </defs>
+
+  <text x="650" y="30" class="title">MLD - Modèle Logique de Données</text>
+  <text x="650" y="52" font-size="13" text-anchor="middle" fill="#555">Tables relationnelles, clés primaires (PK) et étrangères (FK)</text>
+
+  <!-- UTILISATEUR -->
+  <rect x="40" y="100" width="220" height="170" rx="6" class="table"/>
+  <rect x="40" y="100" width="220" height="28" rx="6" class="table-header"/>
+  <text x="150" y="120" class="table-title">utilisateur</text>
+  <text x="55" y="148" class="row pk">PK  id_utilisateur     INT</text>
+  <text x="55" y="168" class="row">       nom                VARCHAR(80)</text>
+  <text x="55" y="186" class="row">       email              VARCHAR(120)</text>
+  <text x="55" y="204" class="row">       mot_de_passe       VARCHAR(255)</text>
+  <text x="55" y="222" class="row">       role               VARCHAR(30)</text>
+  <text x="55" y="240" class="row">       date_creation      DATETIME</text>
+
+  <!-- PARCELLE -->
+  <rect x="380" y="100" width="240" height="170" rx="6" class="table"/>
+  <rect x="380" y="100" width="240" height="28" rx="6" class="table-header"/>
+  <text x="500" y="120" class="table-title">parcelle</text>
+  <text x="395" y="148" class="row pk">PK  id_parcelle        INT</text>
+  <text x="395" y="168" class="row">       nom                VARCHAR(80)</text>
+  <text x="395" y="186" class="row">       localisation       VARCHAR(60)</text>
+  <text x="395" y="204" class="row">       surface_ha         DECIMAL(6,2)</text>
+  <text x="395" y="222" class="row fk">FK  id_utilisateur     INT</text>
+
+  <!-- CULTURE -->
+  <rect x="740" y="100" width="240" height="170" rx="6" class="table"/>
+  <rect x="740" y="100" width="240" height="28" rx="6" class="table-header"/>
+  <text x="860" y="120" class="table-title">culture</text>
+  <text x="755" y="148" class="row pk">PK  id_culture         INT</text>
+  <text x="755" y="168" class="row">       type               VARCHAR(50)</text>
+  <text x="755" y="186" class="row">       date_semis         DATE</text>
+  <text x="755" y="204" class="row fk">FK  id_parcelle        INT</text>
+
+  <!-- METEO -->
+  <rect x="1060" y="100" width="220" height="170" rx="6" class="table"/>
+  <rect x="1060" y="100" width="220" height="28" rx="6" class="table-header"/>
+  <text x="1170" y="120" class="table-title">meteo</text>
+  <text x="1075" y="148" class="row pk">PK  date              DATE</text>
+  <text x="1075" y="168" class="row">       temperature       DECIMAL(4,1)</text>
+  <text x="1075" y="186" class="row">       humidite          DECIMAL(5,1)</text>
+  <text x="1075" y="204" class="row">       pluie_mm          DECIMAL(5,1)</text>
+
+  <!-- OBSERVATION -->
+  <rect x="200" y="500" width="260" height="180" rx="6" class="table"/>
+  <rect x="200" y="500" width="260" height="28" rx="6" class="table-header"/>
+  <text x="330" y="520" class="table-title">observation</text>
+  <text x="215" y="548" class="row pk">PK  id_observation     INT</text>
+  <text x="215" y="568" class="row">       date               DATE</text>
+  <text x="215" y="586" class="row">       etat               VARCHAR(40)</text>
+  <text x="215" y="604" class="row">       commentaire        VARCHAR(255)</text>
+  <text x="215" y="622" class="row fk">FK  id_parcelle        INT</text>
+
+  <!-- ALERTE -->
+  <rect x="600" y="500" width="260" height="200" rx="6" class="table"/>
+  <rect x="600" y="500" width="260" height="28" rx="6" class="table-header"/>
+  <text x="730" y="520" class="table-title">alerte</text>
+  <text x="615" y="548" class="row pk">PK  id_alerte          INT</text>
+  <text x="615" y="568" class="row">       date               DATE</text>
+  <text x="615" y="586" class="row">       type               VARCHAR(40)</text>
+  <text x="615" y="604" class="row">       niveau             TINYINT (1-3)</text>
+  <text x="615" y="622" class="row">       statut             VARCHAR(20)</text>
+  <text x="615" y="640" class="row fk">FK  id_parcelle        INT</text>
+
+  <!-- Liens FK avec flèches -->
+  <!-- utilisateur -> parcelle -->
+  <path d="M 260 200 L 380 200" class="link"/>
+  <text x="290" y="194" font-size="10" fill="#424242">1..n</text>
+
+  <!-- parcelle -> culture -->
+  <path d="M 620 200 L 740 200" class="link"/>
+  <text x="650" y="194" font-size="10" fill="#424242">1..n</text>
+
+  <!-- parcelle -> observation -->
+  <path d="M 460 270 Q 400 380 330 500" class="link"/>
+  <text x="370" y="380" font-size="10" fill="#424242">1..n</text>
+
+  <!-- parcelle -> alerte -->
+  <path d="M 540 270 Q 620 380 700 500" class="link"/>
+  <text x="600" y="380" font-size="10" fill="#424242">1..n</text>
+
+  <!-- meteo (date) référencée par observation/alerte (info) -->
+  <path d="M 1060 200 Q 1000 380 860 540" stroke="#9E9E9E" stroke-width="1.5" fill="none" stroke-dasharray="5,5"/>
+  <text x="970" y="380" font-size="10" fill="#9E9E9E">croisement par date</text>
+
+  <!-- Légende -->
+  <rect x="40" y="730" width="500" height="100" rx="4" class="legend"/>
+  <text x="55" y="752" font-size="12" font-weight="bold" fill="#212121">Légende :</text>
+  <text x="55" y="772" class="row pk">PK : clé primaire (Primary Key)</text>
+  <text x="55" y="790" class="row fk">FK : clé étrangère (Foreign Key)</text>
+  <line x1="55" y1="805" x2="105" y2="805" class="link"/>
+  <text x="115" y="809" font-size="11" fill="#212121">Relation 1..n (intégrité référentielle)</text>
+  <line x1="55" y1="822" x2="105" y2="822" stroke="#9E9E9E" stroke-width="1.5" stroke-dasharray="5,5"/>
+  <text x="115" y="826" font-size="11" fill="#212121">Jointure logique (par date) sans FK directe</text>
+</svg>

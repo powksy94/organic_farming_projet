@@ -18,6 +18,19 @@ window.TV_PARCEL_COORDS = {
   "Pommes de Terre":  { coords: "M 620 80 L 760 90 L 750 220 L 615 210 Z",   labelXY: [688, 145], stade: "Tubérisation" },
 };
 
+const TV_PARCEL_COORD_LIST = Object.values(window.TV_PARCEL_COORDS);
+
+function getParcelMeta(plot) {
+  const byName = window.TV_PARCEL_COORDS[plot.name];
+  if (byName) return byName;
+
+  if (Number.isFinite(plot.id) && TV_PARCEL_COORD_LIST.length > 0) {
+    return TV_PARCEL_COORD_LIST[(plot.id - 1) % TV_PARCEL_COORD_LIST.length];
+  }
+
+  return {};
+}
+
 // Mapping niveau → sévérité TerraView
 const SEVERITE_MAP = { 1: "basse", 2: "moyenne", 3: "haute" };
 
@@ -59,7 +72,7 @@ window.TV_API = {
 
     // Transformation plots → parcelles TerraView
     const parcelles = plots.map(p => {
-      const meta = TV_PARCEL_COORDS[p.name] || {};
+      const meta = getParcelMeta(p);
       const culture = crops.find(c => c.plot_id === p.id);
       const plotObs = observations
         .filter(o => o.plot_id === p.id)

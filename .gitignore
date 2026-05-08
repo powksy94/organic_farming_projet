@@ -4,7 +4,6 @@
 app/
 site/
 site_simple/
-frontend/
 
 # Python
 __pycache__/

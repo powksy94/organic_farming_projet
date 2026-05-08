@@ -14,7 +14,7 @@ export default function Alerts() {
     const params = filter === 'active'   ? { resolved: false }
                   : filter === 'resolved' ? { resolved: true }
                   : {}
-    return Promise.all([api.alerts(params), api.plots()])
+    Promise.all([api.alerts(params), api.plots()])
       .then(([a, p]) => { setAlerts(Array.isArray(a) ? a : []); setPlots(Array.isArray(p) ? p : []) })
       .catch(e => setError(e.message))
   }

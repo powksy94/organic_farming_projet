@@ -4,7 +4,6 @@
 app/
 site/
 site_simple/
-frontend/
 
 # Python
 __pycache__/
@@ -28,6 +27,10 @@ organic-farming.venv/
 # OS
 .DS_Store
 Thumbs.db
+
+# Fichiers temporaires éditeurs (LibreOffice, Word...)
+*.tmp
+.~lock.*
 
 # Backend (fichiers locaux uniquement)
 backend/database.py

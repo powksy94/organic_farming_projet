@@ -19,9 +19,11 @@ export default function Observations() {
   })
   const [showForm, setShow] = useState(false)
 
-  const load = () => Promise.all([api.observations(), api.plots()])
-    .then(([o, p]) => { setObs(Array.isArray(o) ? o : []); setPlots(Array.isArray(p) ? p : []) })
-    .catch(e => setError(e.message))
+  const load = () => {
+    Promise.all([api.observations(), api.plots()])
+      .then(([o, p]) => { setObs(Array.isArray(o) ? o : []); setPlots(Array.isArray(p) ? p : []) })
+      .catch(e => setError(e.message))
+  }
   useEffect(load, [])
 
   const submit = async (e) => {

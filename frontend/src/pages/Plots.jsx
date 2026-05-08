@@ -7,7 +7,9 @@ export default function Plots() {
   const [form, setForm]     = useState({ name: '', location: '', area_ha: '' })
   const [showForm, setShow] = useState(false)
 
-  const load = () => api.plots().then(p => setPlots(Array.isArray(p) ? p : [])).catch(e => setError(e.message))
+  const load = () => {
+    api.plots().then(p => setPlots(Array.isArray(p) ? p : [])).catch(e => setError(e.message))
+  }
   useEffect(load, [])
 
   const submit = async (e) => {

@@ -8,9 +8,11 @@ export default function Crops() {
   const [form, setForm] = useState({ type: '', planting_date: '', plot_id: '' })
   const [showForm, setShow] = useState(false)
 
-  const load = () => Promise.all([api.crops(), api.plots()])
-    .then(([c, p]) => { setCrops(Array.isArray(c) ? c : []); setPlots(Array.isArray(p) ? p : []) })
-    .catch(e => setError(e.message))
+  const load = () => {
+    Promise.all([api.crops(), api.plots()])
+      .then(([c, p]) => { setCrops(Array.isArray(c) ? c : []); setPlots(Array.isArray(p) ? p : []) })
+      .catch(e => setError(e.message))
+  }
   useEffect(load, [])
 
   const submit = async (e) => {

@@ -1,5 +1,6 @@
-import { Routes, Route, Navigate } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import Layout from './components/Layout'
+import Landing from './pages/Landing'
 import Dashboard from './pages/Dashboard'
 import Plots from './pages/Plots'
 import Crops from './pages/Crops'
@@ -10,8 +11,8 @@ import ErrorBoundary from './components/ErrorBoundary'
 export default function App() {
   return (
     <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<Navigate to="/dashboard" replace />} />
+      <Route path="/" element={<Landing />} />
+      <Route element={<Layout />}>
         <Route path="dashboard" element={<ErrorBoundary><Dashboard /></ErrorBoundary>} />
         <Route path="plots" element={<ErrorBoundary><Plots /></ErrorBoundary>} />
         <Route path="crops" element={<ErrorBoundary><Crops /></ErrorBoundary>} />

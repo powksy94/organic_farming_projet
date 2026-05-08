@@ -15,7 +15,7 @@ export default function Alerts() {
                   : filter === 'resolved' ? { resolved: true }
                   : {}
     return Promise.all([api.alerts(params), api.plots()])
-      .then(([a, p]) => { setAlerts(a); setPlots(p) })
+      .then(([a, p]) => { setAlerts(Array.isArray(a) ? a : []); setPlots(Array.isArray(p) ? p : []) })
       .catch(e => setError(e.message))
   }
   useEffect(load, [filter])
@@ -55,8 +55,8 @@ export default function Alerts() {
 
       {error && <div className="bg-red-50 text-red-700 p-3 rounded mb-3 text-sm">{error}</div>}
 
-      <div className="bg-white rounded shadow-sm overflow-hidden">
-        <table className="w-full text-sm">
+      <div className="bg-white rounded shadow-sm overflow-x-auto">
+        <table className="w-full text-sm min-w-[560px]">
           <thead className="bg-gray-100 text-left">
             <tr>
               <th className="px-4 py-2">Date</th>

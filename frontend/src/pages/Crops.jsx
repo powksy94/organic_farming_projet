@@ -9,7 +9,7 @@ export default function Crops() {
   const [showForm, setShow] = useState(false)
 
   const load = () => Promise.all([api.crops(), api.plots()])
-    .then(([c, p]) => { setCrops(c); setPlots(p) })
+    .then(([c, p]) => { setCrops(Array.isArray(c) ? c : []); setPlots(Array.isArray(p) ? p : []) })
     .catch(e => setError(e.message))
   useEffect(load, [])
 
@@ -63,8 +63,8 @@ export default function Crops() {
         </form>
       )}
 
-      <div className="bg-white rounded shadow-sm overflow-hidden">
-        <table className="w-full text-sm">
+      <div className="bg-white rounded shadow-sm overflow-x-auto">
+        <table className="w-full text-sm min-w-[500px]">
           <thead className="bg-gray-100 text-left">
             <tr>
               <th className="px-4 py-2">Type</th>

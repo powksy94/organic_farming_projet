@@ -20,7 +20,7 @@ export default function Observations() {
   const [showForm, setShow] = useState(false)
 
   const load = () => Promise.all([api.observations(), api.plots()])
-    .then(([o, p]) => { setObs(o); setPlots(p) })
+    .then(([o, p]) => { setObs(Array.isArray(o) ? o : []); setPlots(Array.isArray(p) ? p : []) })
     .catch(e => setError(e.message))
   useEffect(load, [])
 
@@ -79,8 +79,8 @@ export default function Observations() {
         </form>
       )}
 
-      <div className="bg-white rounded shadow-sm overflow-hidden">
-        <table className="w-full text-sm">
+      <div className="bg-white rounded shadow-sm overflow-x-auto">
+        <table className="w-full text-sm min-w-[580px]">
           <thead className="bg-gray-100 text-left">
             <tr>
               <th className="px-4 py-2">Date</th>
